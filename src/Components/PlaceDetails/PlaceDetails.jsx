@@ -5,9 +5,11 @@ import React from 'react'
 
 import useStyles from './styles'
 
-const PlaceDetails = ({ place }) => {
-    console.log(place)
+const PlaceDetails = ({ place, selected, refProp }) => {
     const classes = useStyles();
+
+    if (selected) refProp?.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+
     return (
         <Card elevation={6}>
             <CardMedia style={{ height: 350 }}
@@ -19,7 +21,7 @@ const PlaceDetails = ({ place }) => {
 
             <CardContent>
                 <Typography gutterBottom variant='h5'>{place.name}</Typography>
-                <Rating size='small' value={Number(place.Rating)} readOnly />
+                <Rating name="read-only" size="small" value={Number(place.rating)} readOnly />
                 <Box display={'flex'} justifyContent='space-between'>
                     <Typography variant='subtitle1' >Price</Typography>
                     <Typography gutterBottom variant='subtitle1' >{place.price_level}</Typography>

@@ -5,14 +5,14 @@ const url = 'https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary'
 
 
 
-export const getPlaceData = async (sw, ne) => {
-    console.log(sw)
+export const getPlaceData = async (type, sw, ne) => {
+    console.log(type)
     const options = {
         params: {
-            bl_latitude: '11.847676',
-            tr_latitude: '12.838442',
-            bl_longitude: '109.095887',
-            tr_longitude: '109.149359',
+            bl_latitude: sw.lat,
+            bl_longitude: sw.lng,
+            tr_longitude: ne.lng,
+            tr_latitude: ne.lat,
             restaurant_tagcategory_standalone: '10591',
             restaurant_tagcategory: '10591',
             limit: '30',
@@ -28,7 +28,7 @@ export const getPlaceData = async (sw, ne) => {
     };
 
     try {
-        const { data: { data } } = await axios.get(url, options);
+        const { data: { data } } = await axios.get(`https://travel-advisor.p.rapidapi.com/${type}/list-in-boundary`, options);
         console.log(data);
         return data;
     } catch (e) {
