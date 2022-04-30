@@ -6,7 +6,8 @@ const url = 'https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary'
 
 
 export const getPlaceData = async (type, sw, ne) => {
-    console.log(type)
+    console.log(sw)
+    console.log(ne)
     const options = {
         params: {
             bl_latitude: sw.lat,
